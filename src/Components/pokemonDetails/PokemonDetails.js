@@ -1,19 +1,22 @@
 import React from "react";
 
-function PokemonDetails(props) {
+function PokemonDetails() {
+
   return (
-    <div>
+
       <div
         className="modal fade "
         id="exampleModal"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
+        tabIndex='-1'
+
       >
         <div className="modal-dialog modal-dialog-centred">
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel">
-                {props.pokemon.name}
+                {/* {pokemon.name} */}
               </h5>
               <button
                 type="button"
@@ -29,7 +32,7 @@ function PokemonDetails(props) {
                     Id is {props.id()}
                 </h5> */}
                 <p>
-                    {props.pokemon.url}
+                    {/* {props.pokemon.url} */}
                 </p>
             </div>
             <div className="modal-footer">
@@ -44,7 +47,6 @@ function PokemonDetails(props) {
           </div>
         </div>
       </div>
-    </div>
   );
 }
 

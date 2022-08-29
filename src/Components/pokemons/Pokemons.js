@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import PokemonDisplay from "../pokemonDisplay/PokemonDisplay";
 // import './pokemon.css';
+
 const Pokemons = () => {
   const [pokemons, setpokemons] = useState(null);
 
