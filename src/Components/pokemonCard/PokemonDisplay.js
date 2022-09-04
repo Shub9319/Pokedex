@@ -21,7 +21,7 @@ function PokemonDisplay({ pokemon }) {
           width="200px"
         />
         <div className="card-body">
-          <h5 className="card-title">{pokemon.name}</h5>
+          <h5 className="card-title">{pokemon.name.toUpperCase()}</h5>
           <p>
             <b>Pokemon Id: {id}</b>
           </p>
