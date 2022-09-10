@@ -1,18 +1,37 @@
 import React, { useEffect, useState } from "react";
 import PokemonDetails from "../pokemonDetails/PokemonDetails";
+import axios from "axios";
+import { type } from "@testing-library/user-event/dist/type";
 
 function PokemonDisplay({ pokemon }) {
-    function getID(){
-        return pokemon.url.substring(34,pokemon.url.length-1);
+  const [types, setTypes] = useState();
+
+  function getID() {
+    return pokemon.url.substring(34, pokemon.url.length - 1);
+  }
+  const id = getID();
+  
+  (async function getType() {
+    try {
+      const response = await axios.get(pokemon.url);
+      setTypes(response.data.types);
+    } catch (error) {
+      console.log(error);
     }
+  })();
 
-    const id= getID();
+  // axios
+  //   .get(pokemon.url)
+  //   .then(function (response) {
+  //     setTypes(response.data.types);
+  //   })
+  //   .catch(function (error) {
+  //     console.log(error);
+  //   });
 
-
-    
   return (
     <div>
-      <div className="card" style={{ width: "18rem" }}>
+      <div className="card bg-info" style={{ width: "18rem" }}>
         <img
           src={`https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${id}.svg`}
           className="card-img-top"
@@ -25,10 +44,19 @@ function PokemonDisplay({ pokemon }) {
           <p>
             <b>Pokemon Id: {id}</b>
           </p>
+          <b>Types:</b>
+          {types &&
+            types.map((ele) => {
+              return (
+                <section key={ele.slot}>
+                  {">>"} {ele.type.name.toUpperCase()}
+                </section>
+              );
+            })}
           <p className="card-text">Details of the Pokemon !!</p>
           <button
             type="button"
-            className="btn btn-primary"
+            className="btn btn-danger"
             data-toggle="modal"
             data-target="#exampleModal"
           >
