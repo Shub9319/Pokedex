@@ -49,7 +49,7 @@ function PokemonDisplay({ pokemon }) {
             types.map((ele) => {
               return (
                 <section key={ele.slot}>
-                  {">>"} {ele.type.name.toUpperCase()}
+                  {<b>-{">"}</b>} { ele.type.name.toUpperCase()}
                 </section>
               );
             })}

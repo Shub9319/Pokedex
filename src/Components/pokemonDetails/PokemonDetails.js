@@ -17,6 +17,7 @@ function PokemonDetails() {
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel">
                 {/* {pokemon.name} */}
+                This is in develop Mode  !! 
               </h5>
               <button
                 type="button"

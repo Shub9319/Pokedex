@@ -1,15 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import axios from "axios";
-import PokemonDisplay from "../pokemonCard/PokemonDisplay";
+// import PokemonDisplay from "../pokemonCard/PokemonDisplay";
 import './pokemon.css';
 import Header from "../header/Header";
 
+const PokemonDisplay = React.lazy(()=> import("../pokemonCard/PokemonDisplay"));
 const Pokemons = () => {
   const [pokemons, setpokemons] = useState(null);
   const [prev, setPrev] = useState();
   const [next, setNext] = useState();
   const [url, seturl] = useState("https://pokeapi.co/api/v2/pokemon");
   const [types, setTypes] = useState();
+
+  useEffect(() => {
+    getpokemons();
+  }, [url]);
 
   async function getpokemons() {
     try {
@@ -23,7 +28,7 @@ const Pokemons = () => {
   }
 
   function sendPokemon(pokemon) {
-    let poke =[]
+    let poke = []
     pokemon.forEach(element => {
       poke.push(element.pokemon)
     });
@@ -41,9 +46,6 @@ const Pokemons = () => {
     }
   })();
 
-  useEffect(() => {
-     getpokemons();
-  }, [url]);
 
   return (
     <>
@@ -54,7 +56,9 @@ const Pokemons = () => {
             pokemons.map((pokemon) => {
               return (
                 <div className="col-4 my-3" key={pokemon.name}>
+                  <Suspense fallback={<div>Loading....</div>}>
                   <PokemonDisplay pokemon={pokemon} />
+                  </Suspense>
                 </div>
               );
             })}
