@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import PokemonDetails from "../pokemonDetails/PokemonDetails";
 import axios from "axios";
-import { type } from "@testing-library/user-event/dist/type";
 
 function PokemonDisplay({ pokemon }) {
   const [types, setTypes] = useState();
