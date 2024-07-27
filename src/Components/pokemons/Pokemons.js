@@ -12,7 +12,7 @@ const Pokemons = () => {
   const [url, seturl] = useState("https://pokeapi.co/api/v2/pokemon");
   const [types, setTypes] = useState();
 
-  async function getpokemons() {
+  async function getpokemons(url) {
     try {
       const response = await axios.get(url);
       setpokemons(response.data.results);
@@ -24,7 +24,7 @@ const Pokemons = () => {
   }
 
   useEffect(() => {
-    getpokemons();
+    getpokemons(url);
   }, [url]);
   
   function sendPokemon(pokemon) {
